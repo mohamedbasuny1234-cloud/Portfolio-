@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohamed Basuny — Military Officer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07061a;--indigo:#4f46e5;--pink:#ff2d95;--cyan:#22d3ee;--amber:#fbbf24;--text:#e8e8f5;--mut:#9a9ab8;--card:rgba(255,255,255,.04);--bd:rgba(255,255,255,.09)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none}
+h1,h2,h3,.logo{font-family:'Syne',sans-serif}
+::-webkit-scrollbar{width:9px}::-webkit-scrollbar-track{background:#0b0a24}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--pink),var(--indigo));border-radius:9px}
+a,button{cursor:none}
+#bg{position:fixed;inset:0;z-index:0}
+.noise{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#dot,#ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%)}
+#dot{width:8px;height:8px;background:var(--cyan);box-shadow:0 0 14px 4px var(--cyan)}
+#ring{width:38px;height:38px;border:1.5px solid var(--pink);transition:width .25s,height .25s,border-color .25s}
+#ring.big{width:60px;height:60px;border-color:var(--amber)}
+#loader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .6s,visibility .6s}
+#loader.hide{opacity:0;visibility:hidden}
+#loader .ini{font-family:Syne;font-weight:800;font-size:5rem;background:linear-gradient(90deg,var(--pink),var(--cyan),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;animation:pulse 1.2s infinite}
+.bar{width:240px;height:4px;background:#1b1a3a;border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--indigo),var(--pink),var(--cyan),var(--amber));animation:load 1.9s ease forwards}
+@keyframes load{to{width:100%}}
+@keyframes pulse{50%{transform:scale(1.06);opacity:.8}}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 5%;background:rgba(10,9,32,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);transform:translateY(-100%);animation:slide .8s 2.1s forwards}
+@keyframes slide{to{transform:none}}
+.logo{font-weight:800;font-size:1.2rem;letter-spacing:.5px}
+.logo span{color:var(--pink)}
+nav ul{display:flex;gap:28px;list-style:none}
+nav a{color:var(--text);text-decoration:none;font-size:.92rem;position:relative;padding:4px 0}
+nav a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:linear-gradient(90deg,var(--pink),var(--cyan));transition:width .3s}
+nav a:hover::after{width:100%}
+section{position:relative;z-index:3;padding:110px 7% 60px;max-width:1250px;margin:auto}
+h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:40px}
+h2 em{font-style:normal;background:linear-gradient(90deg,var(--pink),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.rv.l{transform:translateX(-60px)}.rv.r{transform:translateX(60px)}
+.rv.in{opacity:1;transform:none}
+/* hero */
+#home{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:120px}
+.tag{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border:1px solid var(--bd);border-radius:30px;background:var(--card);font-size:.85rem;color:var(--cyan);margin-bottom:22px}
+.tag b{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 10px #34d399;animation:pulse 1.5s infinite}
+h1{font-size:clamp(2.8rem,7vw,5.4rem);line-height:1.02;font-weight:800;background:linear-gradient(100deg,var(--pink),var(--amber),var(--cyan),var(--indigo),var(--pink));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 6s linear infinite}
+@keyframes shim{to{background-position:300% 0}}
+.sub{font-size:1.4rem;color:var(--cyan);margin:18px 0 12px;font-family:Syne}
+.lead{color:var(--mut);max-width:520px;line-height:1.7;margin-bottom:30px}
+.btn{display:inline-block;padding:14px 30px;border-radius:40px;font-weight:700;text-decoration:none;margin:0 12px 12px 0;transition:transform .3s,box-shadow .3s}
+.btn.p{background:linear-gradient(90deg,var(--pink),var(--indigo));color:#fff;box-shadow:0 8px 30px rgba(255,45,149,.35)}
+.btn.s{border:1.5px solid var(--cyan);color:var(--cyan)}
+.btn:hover{transform:translateY(-4px)}
+.stage{position:relative;display:flex;justify-content:center;align-items:center;perspective:1000px;min-height:480px}
+.orb{position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,var(--pink),var(--indigo) 55%,transparent 72%);filter:blur(60px);opacity:.55;animation:pulse 4s infinite}
+.card3d{position:relative;width:310px;padding:36px 28px;border-radius:26px;background:rgba(18,16,50,.75);border:1px solid var(--bd);backdrop-filter:blur(12px);text-align:center;transform-style:preserve-3d;animation:rot 9s ease-in-out infinite;box-shadow:0 30px 80px rgba(79,70,229,.4)}
+@keyframes rot{0%,100%{transform:rotateY(-18deg) rotateX(6deg) translateY(0)}50%{transform:rotateY(18deg) rotateX(-6deg) translateY(-18px)}}
+.av{position:relative;width:110px;height:110px;margin:0 auto 18px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--pink));font:800 2.2rem Syne}
+.av::before{content:"";position:absolute;inset:-12px;border:2px dashed var(--cyan);border-radius:50%;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.card3d h3{font-size:1.2rem}.card3d p{color:var(--mut);font-size:.88rem;margin:4px 0 20px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stats div{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 4px}
+.stats b{display:block;font:800 1.15rem Syne;color:var(--amber)}.stats small{font-size:.68rem;color:var(--mut)}
+/* marquee */
+.mq{position:relative;z-index:3;overflow:hidden;border-block:1px solid var(--bd);padding:18px 0;background:rgba(255,255,255,.02)}
+.mq div{display:flex;gap:60px;width:max-content;animation:mq 28s linear infinite}
+.mq span{font:700 1.2rem Syne;color:var(--mut);white-space:nowrap}
+.mq span:nth-child(4n+1){color:var(--pink)}.mq span:nth-child(4n+2){color:var(--cyan)}.mq span:nth-child(4n+3){color:var(--amber)}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* skills */
+.sk{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+.skill{margin-bottom:22px}
+.skill div{display:flex;justify-content:space-between;margin-bottom:8px;font-weight:500}
+.track{height:9px;background:#1a1940;border-radius:9px;overflow:hidden}
+.fill{position:relative;height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--indigo),var(--pink),var(--amber));transition:width 1.6s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+.fill::after{content:"";position:absolute;inset:0;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:translateX(-120%)}
+.fill.done::after{animation:sweep 1.6s ease 1.6s infinite}
+@keyframes sweep{to{transform:translateX(320%)}}
+.chips{display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start}
+.chip{padding:9px 18px;border-radius:30px;background:var(--card);border:1px solid var(--bd);font-size:.9rem;transition:transform .3s,border-color .3s,box-shadow .3s}
+.chip:hover{transform:translateY(-8px);border-color:var(--cyan);box-shadow:0 10px 24px rgba(34,211,238,.25)}
+/* timeline */
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--pink),var(--cyan),var(--amber),var(--pink));background-size:100% 300%;animation:flow 5s linear infinite}
+@keyframes flow{to{background-position:0 300%}}
+.job{position:relative;padding:30px;border-radius:20px;background:var(--card);border:1px solid var(--bd);transition:transform .35s,box-shadow .35s}
+.job::before{content:"";position:absolute;left:-42px;top:36px;width:15px;height:15px;border-radius:50%;background:var(--pink);box-shadow:0 0 16px var(--pink)}
+.job:hover{transform:translateX(14px);box-shadow:0 0 40px rgba(255,45,149,.25)}
+.job h3{font-size:1.4rem}.job .co{color:var(--cyan);margin:4px 0}.job .meta{color:var(--mut);font-size:.88rem;margin-bottom:14px}
+.job p{color:var(--mut);line-height:1.7;margin-bottom:16px}
+.badge{display:inline-block;padding:5px 14px;margin:0 8px 8px 0;border-radius:20px;font-size:.78rem;background:rgba(251,191,36,.12);color:var(--amber);border:1px solid rgba(251,191,36,.3)}
+/* courses grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pc{position:relative;overflow:hidden;padding:30px 26px;border-radius:20px;background:var(--card);border:1px solid var(--bd);transition:transform .35s,box-shadow .35s}
+.pc::before{content:"";position:absolute;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--pink),var(--amber),var(--cyan));transition:width .5s}
+.pc:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(79,70,229,.35)}.pc:hover::before{width:100%}
+.pc .em{font-size:2.2rem;display:block;margin-bottom:14px}.pc h3{font-size:1.05rem;margin-bottom:10px;line-height:1.35}
+.pc p{color:var(--mut);font-size:.88rem;line-height:1.6;margin-bottom:14px}
+.tg{display:inline-block;font-size:.72rem;padding:4px 11px;margin:0 6px 6px 0;border-radius:14px;background:rgba(34,211,238,.1);color:var(--cyan)}
+/* edu */
+.ed{display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
+.ec{padding:30px;border-radius:20px;background:var(--card);border:1px solid var(--bd)}
+.ec h3{font-size:1.3rem;margin:8px 0}.ec .yr{color:var(--pink);font-weight:700}.ec p{color:var(--mut)}
+.lang{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;margin-top:14px;border-radius:14px;background:rgba(79,70,229,.15);border:1px solid var(--bd)}
+.dots i{display:inline-block;width:11px;height:11px;margin-left:5px;border-radius:50%;background:#2a2956;transform:scale(0);transition:transform .4s}
+.dots i.on{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.in .dots i{transform:scale(1)}
+/* contact */
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.ci{display:flex;align-items:center;gap:18px;padding:18px 22px;margin-bottom:16px;border-radius:16px;background:var(--card);border:1px solid var(--bd);color:var(--text);text-decoration:none;transition:transform .3s,border-color .3s}
+.ci:hover{transform:translateX(14px);border-color:var(--pink)}
+.ci span{font-size:1.6rem}.ci small{display:block;color:var(--mut);font-size:.78rem}
+.rp{position:relative;display:grid;place-items:center;min-height:360px}
+.rp .core{z-index:2;width:130px;height:130px;border-radius:50%;display:grid;place-items:center;font:800 2.6rem Syne;background:linear-gradient(135deg,var(--pink),var(--indigo));animation:pulse 2s infinite;box-shadow:0 0 50px rgba(255,45,149,.5)}
+.rp .ring{position:absolute;width:130px;height:130px;border-radius:50%;border:2px solid var(--cyan);opacity:0;animation:rip 3.6s infinite}
+.rp .ring:nth-child(2){animation-delay:1.2s;border-color:var(--pink)}.rp .ring:nth-child(3){animation-delay:2.4s;border-color:var(--amber)}
+@keyframes rip{0%{transform:scale(1);opacity:.8}100%{transform:scale(3.2);opacity:0}}
+footer{position:relative;z-index:3;text-align:center;padding:40px;color:var(--mut);font-size:.85rem}
+@media(max-width:860px){
+ nav ul{gap:14px}nav a{font-size:.78rem}.logo{font-size:1rem}
+ #home,.sk,.ed,.ct{grid-template-columns:1fr}.grid{grid-template-columns:1fr}
+ section{padding:90px 6% 40px}.stage{min-height:420px}
+}
+@media(max-width:560px){nav ul li:nth-child(n+4){display:none}}
+@media(hover:none){body,a,button{cursor:auto}#dot,#ring{display:none}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="ini">MB</div><div class="bar"><i></i></div></div>
+<canvas id="bg"></canvas><div class="noise"></div><div id="dot"></div><div id="ring"></div>
+
+<nav>
+ <div class="logo">Mohamed <span>Basuny</span></div>
+ <ul>
+  <li><a href="#home">Home</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li>
+  <li><a href="#training">Training</a></li><li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li>
+ </ul>
+</nav>
+
+<section id="home">
+ <div class="rv l">
+  <div class="tag"><b></b> Open to new opportunities · Cairo, Egypt</div>
+  <h1>Mohamed<br>Basuny</h1>
+  <div class="sub">Military Officer · Commando (Thunderbolt) Forces</div>
+  <p class="lead">Commissioned Officer in the Egyptian Armed Forces, skilled in tactical operations, leadership, and military training — now building expertise in AI, cloud, and sustainability.</p>
+  <a class="btn p" href="#contact">Get in Touch</a><a class="btn s" href="#experience">View Experience</a>
+ </div>
+ <div class="stage rv r">
+  <div class="orb"></div>
+  <div class="card3d">
+   <div class="av">MB</div>
+   <h3>Mohamed Basuny</h3><p>Commissioned Officer · Thunderbolt Forces</p>
+   <div class="stats"><div><b>2022</b><small>Commissioned</small></div><div><b>10</b><small>Courses</small></div><div><b>B.Sc.</b><small>Military Science</small></div></div>
+  </div>
+ </div>
+</section>
+
+<div class="mq"><div id="mq"></div></div>
+
+<section id="skills">
+ <h2 class="rv">Skills & <em>Expertise</em></h2>
+ <div class="sk">
+  <div id="bars" class="rv l"></div>
+  <div class="chips rv r" id="chips"></div>
+ </div>
+</section>
+
+<section id="experience">
+ <h2 class="rv">Work <em>Experience</em></h2>
+ <div class="tl"><div class="job rv l">
+  <h3>Officer in the Armed Forces</h3>
+  <div class="co">Egyptian Army — Commando (Thunderbolt) Forces</div>
+  <div class="meta">2022 – Present · Cairo, Egypt</div>
+  <p>Commissioned officer serving in the Commando (Thunderbolt) Forces, with responsibility for tactical operations, leadership, and military training.</p>
+  <span class="badge">Tactical Operations</span><span class="badge">Leadership</span><span class="badge">Military Training</span><span class="badge">Crisis & Risk Management</span>
+ </div></div>
+</section>
+
+<section id="training">
+ <h2 class="rv">Training & <em>Courses</em></h2>
+ <div class="grid" id="courses"></div>
+</section>
+
+<section id="education">
+ <h2 class="rv">Education & <em>Languages</em></h2>
+ <div class="ed">
+  <div class="ec rv l"><span class="yr">2019 – 2022</span><h3>Military Academy</h3><p>Bachelor's Degree in Military Science</p></div>
+  <div class="ec rv r"><h3>Languages</h3>
+   <div class="lang"><span>English · Advanced</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <h2 class="rv">Get in <em>Touch</em></h2>
+ <div class="ct">
+  <div class="rv l">
+   <a class="ci" href="mailto:Mohamed.basuny1234@gmail.com"><span>✉️</span><div><small>Email</small>Mohamed.basuny1234@gmail.com</div></a>
+   <a class="ci" href="tel:01273706633"><span>📞</span><div><small>Phone</small>01273706633</div></a>
+   <div class="ci"><span>📍</span><div><small>Location</small>Cairo, Egypt</div></div>
+   <div class="ci"><span>🟢</span><div><small>Availability</small>Open to new opportunities</div></div>
+  </div>
+  <div class="rp rv r"><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="core">MB</div></div>
+ </div>
+</section>
+<footer>© 2026 Mohamed Basuny · Cairo, Egypt</footer>
+
+<script>
+// data
+const skills=[["Leadership",95],["Strategic Planning",88],["Teamwork & Collaboration",92],["Problem Solving",90],["Physical Fitness & Endurance",96],["Crisis & Risk Management",90],["Communication & Coordination",88],["Military Training",94]];
+const chips=["Leadership","Strategic Planning","Teamwork","Problem Solving","Physical Fitness","Crisis Management","Risk Management","Communication","Coordination","Military Training","Tactical Operations","AI","Microsoft Cloud","Cloud Strategy","Sustainability","ESG","Green Skills","Sustainable Tech","ICDL","Cash Flow"];
+const courses=[["💰","Cash Flow","HP LIFE (online)",["HP LIFE","Finance"]],["🤖","AI for Business Professionals","HP Foundation",["AI","Business"]],["🌍","Sustainability Foundations: Core Concepts","LinkedIn Learning",["Sustainability"]],["🌱","Closing the Green Skills Gap","Power a greener economy and drive sustainability — LinkedIn Learning",["Green Skills"]],["💡","Sustainability as an Innovation Opportunity","LinkedIn Learning",["Innovation"]],["☁️","Including Sustainability in Your Cloud Strategy","LinkedIn Learning",["Cloud","Strategy"]],["📊","Microsoft Cloud for Sustainability: ESG and the Future of Business","LinkedIn Learning",["Microsoft","ESG"]],["🧠","An Introduction to AI and Sustainability","LinkedIn Learning",["AI","Sustainability"]],["💻","Career Essentials in Sustainable Tech","Microsoft and LinkedIn",["Microsoft","Tech"]],["🪪","ICDL — International Computer Driving License","Computer skills certification",["ICDL","IT"]]];
+const mq=["Egyptian Army","Thunderbolt Forces","Military Academy","HP Foundation","HP LIFE","LinkedIn Learning","Microsoft","ICDL"];
+document.getElementById('bars').innerHTML=skills.map(s=>`<div class="skill"><div><span>${s[0]}</span><span>${s[1]}%</span></div><div class="track"><div class="fill" data-w="${s[1]}"></div></div></div>`).join('');
+document.getElementById('chips').innerHTML=chips.map(c=>`<span class="chip">${c}</span>`).join('');
+document.getElementById('courses').innerHTML=courses.map(c=>`<div class="pc rv"><span class="em">${c[0]}</span><h3>${c[1]}</h3><p>${c[2]}</p>${c[3].map(t=>`<span class="tg">${t}</span>`).join('')}</div>`).join('');
+const m=mq.map(x=>`<span>${x}</span><span>✦</span>`).join('');document.getElementById('mq').innerHTML=m+m;
+// loader
+setTimeout(()=>document.getElementById('loader').classList.add('hide'),2000);
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(el.classList.contains('pc')?(i%3)*.12:0)+'s';io.observe(el)});
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.fill').forEach((f,i)=>setTimeout(()=>{f.style.width=f.dataset.w+'%';setTimeout(()=>f.classList.add('done'),1600)},i*120));so.unobserve(e.target)}}),{threshold:.25});
+so.observe(document.getElementById('bars'));
+// cursor
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');let mx=0,my=0,rx=0,ry=0;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function f(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(f)})();
+document.querySelectorAll('a,.chip,.pc,.job,.btn').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('big'));el.addEventListener('mouseleave',()=>ring.classList.remove('big'))});
+// particles
+const cv=document.getElementById('bg'),cx=cv.getContext('2d');let W,H,P=[];const cols=['#4f46e5','#ff2d95','#22d3ee','#fbbf24'];
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(110,Math.floor(W*H/14000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,r:Math.random()*2+1,c:cols[Math.random()*4|0]}))}
+size();addEventListener('resize',size);
+(function draw(){cx.clearRect(0,0,W,H);
+ for(let i=0;i<P.length;i++){const a=P[i];a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;
+  cx.beginPath();cx.arc(a.x,a.y,a.r,0,7);cx.fillStyle=a.c;cx.fill();
+  for(let j=i+1;j<P.length;j++){const b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){cx.globalAlpha=(1-d/130)*.45;cx.strokeStyle=a.c;cx.lineWidth=.8;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke();cx.globalAlpha=1}}}
+ requestAnimationFrame(draw)})();
+</script>
+</body>
+</html>
